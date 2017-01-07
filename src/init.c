@@ -6,13 +6,13 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:14:09 by kioulian          #+#    #+#             */
-/*   Updated: 2016/12/15 16:31:47 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/01/07 15:54:40 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select.h"
 
-void	init_termios(t_env *e)
+int	init_termios(t_env *e)
 {
 	tgetent(NULL, getenv("TERM"));
 	tcgetattr(0, &e->oattr);
@@ -20,24 +20,51 @@ void	init_termios(t_env *e)
 	e->nattr.c_lflag &= ~(ICANON | ECHO);
 	e->nattr.c_cc[VMIN] = 1;
 	e->nattr.c_cc[VTIME] = 0;
-	tcsetattr(0, TCSADRAIN, &e->nattr);
-	while(1)
-		;	
+	if ((tcsetattr(0, TCSADRAIN, &e->nattr)) == -1)
+		return (-1);
+	if ((e->fd = open("/dev/tty", O_RDWR)) == -1)
+		return (make_error("Error opening fd\n"));
+	tputs(tgetstr("cl", NULL), 1, ft_ft_putchar);
+	write(e->fd, "Make a choice !\n\n", 17);
+	//write(e->fd, "\033[1;35;m[X] ", 4);
+	tputs(tgetstr("mr", NULL), 1, ft_ft_putchar);
+	write(e->fd, "Hello\n", 6);
+	tputs(tgetstr("me", NULL), 1, ft_ft_putchar);
+	write(e->fd, "World\n", 6);
+	return (1);
 }
 
-void	init_args(char **argv, t_env *e, int argc)
+void	add_node(t_env *e, char *val)
+{
+	t_node	*new;
+
+	new = (t_node *)malloc(sizeof(t_node));
+	new->sel = 0;
+	new->data = val;
+	if (e->head == NULL)
+	{
+		e->head = new;
+		e->tail = new;
+	}
+	else
+	{
+		e->tail->next = new;
+		new->prev = e->tail;
+		e->tail = new;
+	}
+}
+
+int	init_args(char **argv, t_env *e, int argc)
 {
 	int	y;
-	int	y_i;
 
-	e->list = (char **)malloc(argc * sizeof(char*));
 	y = 1;
-	y_i = 0;
-	while(argv[y])
+	e->head = NULL;
+	e->tail = NULL;
+	while (y < argc)
 	{
-		e->list[y_i] = ft_strdup(argv[y]);
+		add_node(e, argv[y]);
 		y++;
-		y_i++;
 	}
-	e->list[y_i] = 0;
+	return (1);
 }

@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/09 17:55:53 by kioulian          #+#    #+#             */
-/*   Updated: 2017/01/07 11:46:13 by kioulian         ###   ########.fr       */
+/*   Created: 2017/01/07 11:59:16 by kioulian          #+#    #+#             */
+/*   Updated: 2017/01/07 12:00:01 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "select.h"
 
-void	ft_putchar(char c)
+int	make_error(char *error)
 {
-	write(1, &c, 1);
+	ft_putstr(error);
+	return (-1);
 }

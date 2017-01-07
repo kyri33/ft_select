@@ -1,6 +1,6 @@
 NAME = ft_select
 
-SRC = src/main.c libft/libft.a src/init.c
+SRC = src/main.c libft/libft.a src/init.c src/ft_ft_putchar.c src/error.c
 
 FLAGS = clang -Werror -Wextra -Wall -g3 -I includes -o
 
