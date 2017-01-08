@@ -6,13 +6,22 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:52:04 by kioulian          #+#    #+#             */
-/*   Updated: 2017/01/07 15:54:18 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/01/08 15:04:11 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select.h"
 
-int	main(int argc, char **argv)
+void	*get_instance()
+{
+	static t_stat	*inst = NULL;
+
+	if (inst == NULL)
+		inst = (t_stat *)malloc(sizeof(*inst));
+	return (inst);
+}
+
+int		main(int argc, char **argv)
 {
 	t_env	e;
 
@@ -22,12 +31,7 @@ int	main(int argc, char **argv)
 		return make_error("Error initializing arguments\n");
 	if (init_termios(&e) == -1)
 		return make_error("Error initializing terminal\n");
-	t_node	*temp;
-
-	temp = e.tail;
-	while (temp != e.head)
-	{
-		ft_putstr(temp->data);ft_putstr("\n");
-		temp = temp->prev;
-	}
+	((t_stat *)get_instance())->env = &e;
+	if (init_select(&e) == -1)
+		return make_error("Configuration error\n");
 }

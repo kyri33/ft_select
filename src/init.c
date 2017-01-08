@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:14:09 by kioulian          #+#    #+#             */
-/*   Updated: 2017/01/07 15:54:40 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/01/08 16:06:56 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,19 @@ int	init_termios(t_env *e)
 		return (-1);
 	if ((e->fd = open("/dev/tty", O_RDWR)) == -1)
 		return (make_error("Error opening fd\n"));
-	tputs(tgetstr("cl", NULL), 1, ft_ft_putchar);
-	write(e->fd, "Make a choice !\n\n", 17);
-	//write(e->fd, "\033[1;35;m[X] ", 4);
-	tputs(tgetstr("mr", NULL), 1, ft_ft_putchar);
-	write(e->fd, "Hello\n", 6);
-	tputs(tgetstr("me", NULL), 1, ft_ft_putchar);
-	write(e->fd, "World\n", 6);
+	//tputs(tgetstr("mr", NULL), 1, ft_ft_putchar); HIGHLIGHT
+	//tputs(tgetstr("me", NULL), 1, ft_ft_putchar); UNHIGHLIGHT
+	return (1);
+}
+
+int	init_select(t_env *e)
+{
+
+	//TODO Signals
+
+	write_list(e);
+	
+	while(1);
 	return (1);
 }
 
@@ -64,6 +70,7 @@ int	init_args(char **argv, t_env *e, int argc)
 	while (y < argc)
 	{
 		add_node(e, argv[y]);
+		e->size++;
 		y++;
 	}
 	return (1);
