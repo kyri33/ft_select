@@ -24,8 +24,6 @@ int	init_termios(t_env *e)
 		return (-1);
 	if ((e->fd = open("/dev/tty", O_RDWR)) == -1)
 		return (make_error("Error opening fd\n"));
-	//tputs(tgetstr("mr", NULL), 1, ft_ft_putchar); HIGHLIGHT
-	//tputs(tgetstr("me", NULL), 1, ft_ft_putchar); UNHIGHLIGHT
 	return (1);
 }
 
@@ -33,10 +31,9 @@ int	init_select(t_env *e)
 {
 
 	//TODO Signals
-
+	e->curr = e->head;
 	write_list(e);
-	
-	while(1);
+	ft_loop(e);
 	return (1);
 }
 

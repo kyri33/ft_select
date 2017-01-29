@@ -41,21 +41,40 @@ void	process_node(t_env *e, t_node *node)
 	e->y += node->h;
 }
 
+void		ft_underline(t_env *e)
+{
+	tputs(tgoto(tgetstr("cm", NULL), e->curr->x, e->curr->y), 1, ft_ft_putchar);
+	//tputs(tgetstr("ec", NULL), 1, ft_ft_putchar);
+	if (e->curr->sel == 1)
+		tputs(tgetstr("mr", NULL), 1, ft_ft_putchar);
+	tputs(tgetstr("us", NULL), 1, ft_ft_putchar);
+	write(e->fd, e->curr->data, ft_strlen(e->curr->data));
+	tputs(tgetstr("ue", NULL), 1, ft_ft_putchar);
+	if (e->curr->sel == 1)
+		tputs(tgetstr("me", NULL), 1, ft_ft_putchar);
+}
+
 int		write_list(t_env *e)
 {
 	int		i;
 	t_node	*node;
 
 	i = 0;
+	tgetent(NULL, getenv("TERM"));
 	node = e->head;
 	write_start(e);
 	while (i < e->size)
 	{
 		process_node(e, node);
 		tputs(tgoto(tgetstr("cm", NULL), node->x, node->y), 1, ft_ft_putchar);
+		if (node->sel == 1)
+			tputs(tgetstr("mr", NULL), 1, ft_ft_putchar);
 		write(e->fd, node->data, ft_strlen(node->data));
+		if (node->sel == 1)
+			tputs(tgetstr("me", NULL), 1, ft_ft_putchar);
 		i++;
 		node = node->next;
 	}
+	ft_underline(e);
 	return (1);
 }

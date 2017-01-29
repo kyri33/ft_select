@@ -23,6 +23,7 @@ typedef struct	s_env
 {
 	t_node			*head;
 	t_node			*tail;
+	t_node			*curr;
 	struct termios	oattr;
 	struct termios	nattr;
 	int				size;
@@ -44,5 +45,9 @@ int	make_error(char *error);
 int	error_small(t_env *e);
 int	init_select(t_env *e);
 int	write_list(t_env *e);
+void	ft_loop(t_env *e);
+void	ft_go_up(t_env *e);
+void	ft_go_down(t_env *e);
+void	ft_enter(t_env *e);
 
 #endif

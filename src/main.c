@@ -27,11 +27,12 @@ int		main(int argc, char **argv)
 
 	if (argc == 1)
 		exit(0);
+	((t_stat *)get_instance())->env = &e;
 	if (init_args(argv, &e, argc) == -1)
 		return make_error("Error initializing arguments\n");
 	if (init_termios(&e) == -1)
 		return make_error("Error initializing terminal\n");
-	((t_stat *)get_instance())->env = &e;
+	//((t_stat *)get_instance())->env = &e;
 	if (init_select(&e) == -1)
 		return make_error("Configuration error\n");
 }
