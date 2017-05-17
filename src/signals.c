@@ -12,4 +12,11 @@
 
 #include "select.h"
 
+void ft_resize(int i)
+{
+	t_stat	*stat;
 
+	stat = get_instance();
+	write_list(stat->env);
+	(void) i;
+}

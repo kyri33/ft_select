@@ -31,6 +31,7 @@ int	init_select(t_env *e)
 {
 
 	//TODO Signals
+	signal(SIGWINCH, ft_resize);
 	e->curr = e->head;
 	write_list(e);
 	ft_loop(e);

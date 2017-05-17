@@ -14,6 +14,10 @@ void	ft_loop(t_env *e)
 			ft_go_down(e);
 		else if (b[0] == 10 && b[1] == '\0')
 			ft_enter(e);
+		else if (b[0] == 32 && b[1] == '\0')
+			ft_space(e);
+		else if (b[0] == 127 && b[1] == '\0')
+			ft_delete(e);
 		else
 		{
 			int i =0;

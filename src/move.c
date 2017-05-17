@@ -23,3 +23,37 @@ void	ft_enter(t_env *e)
 	e->curr->sel = !e->curr->sel;
 	ft_go_down(e);
 }
+
+void	ft_space(t_env *e)
+{
+	e->curr->sel = !e->curr->sel;
+	ft_go_down(e);
+}
+
+void	ft_delete(t_env *e)
+{
+	t_node	*temp;
+
+	temp = e->curr;
+	if (e->curr == e->head)
+	{
+		e->curr = e->curr->next;
+		e->curr->prev = NULL;
+		e->head = e->curr;
+	}
+	else if (e->curr == e->tail)
+	{
+		e->curr = e->curr->prev;
+		e->curr->next = NULL;
+		e->tail = e->curr;
+	}
+	else
+	{
+		e->curr->prev->next = e->curr->next;
+		e->curr->next->prev = e->curr->prev;
+		e->curr = e->curr->next;
+	}
+	free(temp);
+	e->size--;
+	write_list(e);
+}
