@@ -53,5 +53,6 @@ void	ft_resize(int i);
 void	*get_instance();
 void	ft_delete(t_env *e);
 void	ft_space(t_env *e);
+void	ft_exit(t_env *e);
 
 #endif
