@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 11:59:16 by kioulian          #+#    #+#             */
-/*   Updated: 2017/01/08 14:01:23 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/05/20 17:13:02 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	error_small(t_env *e)
 	return (-1);
 }
 
-int	make_error(char *error)
+int	make_error(t_env *e, char *error)
 {
-	ft_putstr(error);
+	write(e->fd, error, ft_strlen(error));
 	return (-1);
 }

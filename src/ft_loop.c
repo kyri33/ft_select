@@ -18,7 +18,7 @@ void	ft_loop(t_env *e)
 			ft_space(e);
 		else if (b[0] == 127 && b[1] == '\0')
 			ft_delete(e);
-		else if (b[0] == 27)
+		else if (b[0] == 27 && b[1] == '\0')
 			ft_exit(e);
 		else
 		{

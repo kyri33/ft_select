@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:52:04 by kioulian          #+#    #+#             */
-/*   Updated: 2017/05/18 15:08:15 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/05/20 17:17:03 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int		main(int argc, char **argv)
 		exit(0);
 	((t_stat *)get_instance())->env = &e;
 	if (init_args(argv, &e, argc) == -1)
-		return make_error("Error initializing arguments\n");
+		return make_error(&e, "Error initializing arguments\n");
 	if (init_termios(&e) == -1)
-		return make_error("Error initializing terminal\n");
+		return make_error(&e, "Error initializing terminal\n");
 	//((t_stat *)get_instance())->env = &e;
 	if (init_select(&e) == -1)
-		return make_error("Configuration error\n");
+		return make_error(&e, "Configuration error\n");
 }

@@ -2,27 +2,6 @@
 	- Listen for enter
 	- Research redirecting output
 
- * ESC KEY
-	- Code exit function
-	- Free allocated memory
-	- Listen for escape
-	* Restore default config
-
- * RESTORE DEFUALT CONFIG
-	- Restore terminal
-	- Change cflags
-
- * SIGNAL HANDLING CTRL Z AND FG
-	- Interrupt ctrl z signal
-	- Exit properly, restoring environment variable statically
-	- Interrupt continue signal
-	- Restore environment variable and environment
-
- * WINDOW TOO SMALL
-	- Detect when window too small
-	- Code too small function
-	- Clear screen and print message
-
  * MEM CLEAN UP
 
  * NORME

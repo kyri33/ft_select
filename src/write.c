@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 11:37:42 by kioulian          #+#    #+#             */
-/*   Updated: 2017/01/08 16:06:58 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/05/20 17:12:44 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,7 @@ int		write_list(t_env *e)
 		node = node->next;
 	}
 	ft_underline(e);
+	if (e->x + e->max_len > tgetnum("co") || tgetnum("li") < 4)
+		error_small(e);
 	return (1);
 }

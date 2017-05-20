@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 16:32:29 by kioulian          #+#    #+#             */
-/*   Updated: 2017/05/18 16:32:31 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/05/20 17:17:00 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,33 @@ void	ft_go_down(t_env *e)
 
 void	ft_enter(t_env *e)
 {
-	e->curr->sel = !e->curr->sel;
-	ft_go_down(e);
+	int		i;
+	int		j;
+	t_node	*temp;
+
+	tputs(tgetstr("cl", NULL), 1, ft_ft_putchar);
+	close(e->fd);
+	if (tcsetattr(0, 0, &e->oattr))
+		exit(make_error(e, "Failed to restore terminal\n"));
+	i = 0;
+	j = 0;
+	temp = e->head;
+	while (i++ != e->size)
+	{
+		if (temp->sel == 1)
+		{
+			if (j > 0)
+				ft_putstr(" ");
+			ft_putstr(temp->data);
+			j++;
+		}
+		temp = temp->next;
+	}
+	if (j != 0)
+		ft_putstr("\n");
+	ft_freelist(e);
+	free(get_instance());
+	exit(1);
 }
 
 void	ft_space(t_env *e)

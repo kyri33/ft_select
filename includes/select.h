@@ -7,6 +7,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <sys/ioctl.h>
 
 typedef struct	s_node
 {
@@ -41,7 +42,7 @@ typedef struct	s_stat
 int	init_args(char **argv, t_env *e, int argc);
 int	init_termios(t_env *e);
 int	ft_ft_putchar(int c);
-int	make_error(char *error);
+int	make_error(t_env *e, char *error);
 int	error_small(t_env *e);
 int	init_select(t_env *e);
 int	write_list(t_env *e);
@@ -54,5 +55,8 @@ void	*get_instance();
 void	ft_delete(t_env *e);
 void	ft_space(t_env *e);
 void	ft_exit(t_env *e);
+void	ft_stop(int i);
+void	ft_cont(int i);
+void	ft_freelist(t_env *e);
 
 #endif
