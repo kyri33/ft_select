@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 11:37:42 by kioulian          #+#    #+#             */
-/*   Updated: 2017/05/20 17:12:44 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/05/21 11:14:42 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,9 @@ void	process_node(t_env *e, t_node *node)
 	e->y += node->h;
 }
 
-void		ft_underline(t_env *e)
+void	ft_underline(t_env *e)
 {
 	tputs(tgoto(tgetstr("cm", NULL), e->curr->x, e->curr->y), 1, ft_ft_putchar);
-	//tputs(tgetstr("ec", NULL), 1, ft_ft_putchar);
 	if (e->curr->sel == 1)
 		tputs(tgetstr("mr", NULL), 1, ft_ft_putchar);
 	tputs(tgetstr("us", NULL), 1, ft_ft_putchar);

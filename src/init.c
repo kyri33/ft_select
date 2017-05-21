@@ -6,13 +6,13 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:14:09 by kioulian          #+#    #+#             */
-/*   Updated: 2017/05/20 17:17:05 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/05/21 11:14:44 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select.h"
 
-int	init_termios(t_env *e)
+int		init_termios(t_env *e)
 {
 	tgetent(NULL, getenv("TERM"));
 	tcgetattr(0, &e->oattr);
@@ -27,10 +27,8 @@ int	init_termios(t_env *e)
 	return (1);
 }
 
-int	init_select(t_env *e)
+int		init_select(t_env *e)
 {
-
-	//TODO Signals
 	signal(SIGWINCH, ft_resize);
 	signal(SIGTSTP, ft_stop);
 	signal(SIGCONT, ft_cont);
@@ -60,7 +58,7 @@ void	add_node(t_env *e, char *val)
 	}
 }
 
-int	init_args(char **argv, t_env *e, int argc)
+int		init_args(char **argv, t_env *e, int argc)
 {
 	int	y;
 

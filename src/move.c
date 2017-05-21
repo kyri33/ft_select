@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 16:32:29 by kioulian          #+#    #+#             */
-/*   Updated: 2017/05/20 17:17:00 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/05/21 11:32:29 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	ft_enter(t_env *e)
 	int		j;
 	t_node	*temp;
 
-	tputs(tgetstr("cl", NULL), 1, ft_ft_putchar);
-	close(e->fd);
-	if (tcsetattr(0, 0, &e->oattr))
-		exit(make_error(e, "Failed to restore terminal\n"));
+	ft_restore(e);
 	i = 0;
 	j = 0;
 	temp = e->head;
@@ -71,6 +68,8 @@ void	ft_delete(t_env *e)
 {
 	t_node	*temp;
 
+	if (e->size == 1)
+		ft_exit(e);
 	temp = e->curr;
 	if (e->curr == e->head)
 	{

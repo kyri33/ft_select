@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 12:29:58 by kioulian          #+#    #+#             */
-/*   Updated: 2017/05/20 16:55:25 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/05/21 10:54:36 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_resize(int i)
 
 	stat = get_instance();
 	write_list(stat->env);
-	(void) i;
+	(void)i;
 }
 
 void	ft_stop(int i)

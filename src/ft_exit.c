@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 16:53:10 by kioulian          #+#    #+#             */
-/*   Updated: 2017/05/20 17:16:58 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/05/21 11:32:27 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,18 @@ void	ft_freelist(t_env *e)
 	e->tail = NULL;
 }
 
+void	ft_restore(t_env *e)
+{
+	tputs(tgetstr("cl", NULL), 1, ft_ft_putchar);
+	close(e->fd);
+	if (tcsetattr(0, 0, &e->oattr))
+		exit(make_error(e, "Failed to restore terminal\n"));
+}
+
 void	ft_exit(t_env *e)
 {
 	ft_freelist(e);
-	tputs(tgetstr("cl", NULL), 1, ft_ft_putchar);
-	close(e->fd);
 	free(get_instance());
-	if (tcsetattr(0, 0, &e->oattr) == -1)
-		exit(make_error(e, "Failed to restore terminal\n"));
+	ft_restore(e);
 	exit(1);
 }

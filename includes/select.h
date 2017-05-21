@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   select.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/21 10:50:41 by kioulian          #+#    #+#             */
+/*   Updated: 2017/05/21 11:14:39 by kioulian         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SELECT_H
 # define SELECT_H
 
@@ -9,7 +21,7 @@
 # include <fcntl.h>
 # include <sys/ioctl.h>
 
-typedef struct	s_node
+typedef struct		s_node
 {
 	struct s_node	*next;
 	struct s_node	*prev;
@@ -18,9 +30,9 @@ typedef struct	s_node
 	int				y;
 	int				h;
 	int				x;
-}				t_node;
+}					t_node;
 
-typedef struct	s_env
+typedef struct		s_env
 {
 	t_node			*head;
 	t_node			*tail;
@@ -32,31 +44,32 @@ typedef struct	s_env
 	int				x;
 	int				max_len;
 	int				y;
-}				t_env;
+}					t_env;
 
-typedef struct	s_stat
+typedef struct		s_stat
 {
 	struct s_env	*env;
-}				t_stat;
+}					t_stat;
 
-int	init_args(char **argv, t_env *e, int argc);
-int	init_termios(t_env *e);
-int	ft_ft_putchar(int c);
-int	make_error(t_env *e, char *error);
-int	error_small(t_env *e);
-int	init_select(t_env *e);
-int	write_list(t_env *e);
-void	ft_loop(t_env *e);
-void	ft_go_up(t_env *e);
-void	ft_go_down(t_env *e);
-void	ft_enter(t_env *e);
-void	ft_resize(int i);
-void	*get_instance();
-void	ft_delete(t_env *e);
-void	ft_space(t_env *e);
-void	ft_exit(t_env *e);
-void	ft_stop(int i);
-void	ft_cont(int i);
-void	ft_freelist(t_env *e);
+int					init_args(char **argv, t_env *e, int argc);
+int					init_termios(t_env *e);
+int					ft_ft_putchar(int c);
+int					make_error(t_env *e, char *error);
+int					error_small(t_env *e);
+int					init_select(t_env *e);
+int					write_list(t_env *e);
+void				ft_loop(t_env *e);
+void				ft_go_up(t_env *e);
+void				ft_go_down(t_env *e);
+void				ft_enter(t_env *e);
+void				ft_resize(int i);
+void				*get_instance();
+void				ft_delete(t_env *e);
+void				ft_space(t_env *e);
+void				ft_exit(t_env *e);
+void				ft_stop(int i);
+void				ft_cont(int i);
+void				ft_freelist(t_env *e);
+void				ft_restore(t_env *e);
 
 #endif
