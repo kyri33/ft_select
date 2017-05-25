@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 16:32:29 by kioulian          #+#    #+#             */
-/*   Updated: 2017/05/21 11:32:29 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/05/25 11:08:53 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,4 @@ void	ft_delete(t_env *e)
 		e->curr = e->curr->next;
 	}
 	free(temp);
-	e->size--;
-	write_list(e);
 }
